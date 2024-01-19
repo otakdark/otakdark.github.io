@@ -48,55 +48,8 @@
     }
   </style>
 
-  <?php
-  // Nama file yang akan dibaca
-  $fileName = "story.txt";
-  
-  // Membaca isi file
-  $fileContent = file_get_contents($fileName);
-  
-  // Menghitung jumlah baris yang berisi tag pembuka <p>
-  $count = substr_count($fileContent, '<p>');
-  
-  // Format angka dengan titik sebagai pemisah ribuan
-  $count_formatted = number_format($count);
-  ?>
-
-  <body style="background-color: white; font-family: 'Times New Roman', Times, serif; color: black; text-align: justify;">
-
-    <h1 style="text-align: center;" class="text-redan">OTAK DARK</h1>
-
-    <p style="font-weight: bold;">Total story: <?php echo $count_formatted; ?></p>
-    
-    <?php
-    $file = 'story.txt';
-    $handle = fopen($file, 'r');
-    $count = 0;
-
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            $count++;
-            // Menghapus <br> dari setiap baris
-            $line = str_replace('<br>', '', $line);
-
-            echo $line;
-
-            // Menampilkan <div> setiap baris ke-15
-            if ($count % 15 === 0) {
-                echo '<div data-mndbanid="f3daf0e4-125f-497a-90fd-d4339111753d" class="tengah">' . $line . '</div>';
-            }
-        }
-        fclose($handle);
-    } else {
-        echo "Tidak bisa membuka file.";
-    }
-    ?>
-
-    <div style="color: black; opacity: 0.3; font-size: 2vw; position: fixed; bottom: 25px; left: 25px; z-index: 2; font-weight: bold; user-select: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;">&copy; Laskar ID<br>Created on, 02 January 2024</div>
-    
-    <img alt="MaGNEkzSzpnmecw.gif" src="assets/images/MaGNEkzSzpnmecw.gif">
-    
-    <div style="position:fixed;bottom:25px;right:25px;background-color:rgba(75,0,130,0.7);color:white;font-family:'Times New Roman', Times, serif;padding:8px;border-radius:8px;cursor:pointer;" onclick="window.open('open/saran.php','_blank')">REQUEST</div>
+  <body>
+      <h1>Hello World</h1>
   </body>
 
 </html>
