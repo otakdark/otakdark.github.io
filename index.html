@@ -22,10 +22,6 @@
     <link rel="icon" href="https://tierced-butters.000webhostapp.com/assets/images/mtgDfoGiiAtsgrc.jpg" type="image/png">
     <link rel="shortcut" href="https://tierced-butters.000webhostapp.com/assets/images/mtgDfoGiiAtsgrc.jpg">
     <link rel="shortcut icon" type="image/x-icon" href="https://tierced-butters.000webhostapp.com/assets/images/mtgDfoGiiAtsgrc.jpg">
-    <meta name="google-adsense-account" content="ca-pub-1811586010937090">
-    <meta name="mnd-ver" content="idtxiaduzouopjj2lpyjgw">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1811586010937090" crossorigin="anonymous"></script>
-    <script async src="https://ss.mndsrv.com/banner.js"></script>
     <title>STORY CREEPY</title>
   </head>
 
@@ -48,8 +44,46 @@
     }
   </style>
 
-  <body>
-      <h1>Hello World</h1>
+  
+  <body style="background-color: white; font-family: 'Times New Roman', Times, serif; color: black; text-align: justify;">
+
+    <h1 style="text-align: center;" class="text-redan">OTAK DARK</h1>
+
+    <p style="font-weight: bold;" id="paragraph-count"></p>
+
+    <script>
+        // Menggunakan fetch untuk mendapatkan isi dari file story.txt
+        fetch('story.txt')
+            .then(response => response.text())
+            .then(data => {
+                // Menghitung jumlah tag <p> dalam isi file
+                const paragraphCount = (data.match(/<p>/g) || []).length;
+
+                // Menampilkan jumlah tag <p> di dalam elemen dengan id 'paragraph-count'
+                document.getElementById('paragraph-count').innerText = `Total story: ${paragraphCount}`;
+            })
+            .catch(error => console.error('Error fetching the story:', error));
+    </script>
+    
+    <div id="story-container"></div>
+
+    <script>
+        // Menggunakan fetch untuk mendapatkan isi dari file story.txt
+        fetch('story.txt')
+            .then(response => response.text())
+            .then(data => {
+                // Menampilkan isi file di dalam elemen dengan id 'story-container'
+                document.getElementById('story-container').innerText = data;
+            })
+            .catch(error => console.error('Error fetching the story:', error));
+    </script>
+    
+    <div style="color: black; opacity: 0.3; font-size: 2vw; position: fixed; bottom: 25px; left: 25px; z-index: 2; font-weight: bold; user-select: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;">&copy; Laskar ID<br>Created on, 02 January 2024</div>
+    
+    <img alt="MaGNEkzSzpnmecw.gif" src="assets/images/MaGNEkzSzpnmecw.gif">
+    
+    <div style="position:fixed;bottom:25px;right:25px;background-color:rgba(75,0,130,0.7);color:white;font-family:'Times New Roman', Times, serif;padding:8px;border-radius:8px;cursor:pointer;" onclick="window.open('?','_blank')">REQUEST</div>
+    
   </body>
 
 </html>
