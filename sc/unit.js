@@ -1,4 +1,3 @@
-<script>
 function generateRandomUnit() {
   const minLength = 5;
   const maxLength = 7;
@@ -47,4 +46,3 @@ while (true) {
   }
 }
 alert("Jika server tidak ada respon kembali lagi 30 menit.")
-</script>
