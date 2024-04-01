@@ -81,21 +81,19 @@
         .then(response => response.text())
         .then(data => {
             // Mengganti setiap 15 elemen <p> dengan <div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div>
-            let paragraphs = data.split('<p>');
-            let modifiedData = paragraphs.map((paragraph, index) => {
+            let paragraphs = data.split('</p>');
+            let modifiedData = '';
+            paragraphs.forEach((paragraph, index) => {
+                modifiedData += paragraph + '</p>';
                 if ((index + 1) % 15 === 0) {
-                    return '<div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div>';
-                } else {
-                    return '<p>' + paragraph;
+                    modifiedData += '<div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div>';
                 }
-            }).join('<p>'); // Gabungkan kembali dengan <p> untuk mempertahankan sifat tag
+            });
             // Menampilkan isi file dengan mempertahankan sifat tag
             document.getElementById('paragraph-content').innerHTML = modifiedData;
         })
         .catch(error => console.error('Error fetching the story:', error));
     </script>
-
-
     
     <div style="color: black; opacity: 0.3; font-size: 2vw; position: fixed; bottom: 25px; left: 25px; z-index: 2; font-weight: bold; user-select: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;">&copy; YOGAK B4DUT<br>Created 2024</div>
     
