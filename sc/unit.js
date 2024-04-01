@@ -27,7 +27,7 @@ while (true) {
   let enteredUnit = prompt("Masukkan kode Verifikasi: " + unit);
 
   if (enteredUnit === null) {
-    let confirmation = confirm("Eh Anjay! Anda menyegarkan halaman. Jangan nyepam nanti delay!\nSilahkan coba lagi.");
+    let confirmation = confirm("Eh Anjay! Anda merefresh halaman. Jangan nyepam nanti delay!\nSilahkan coba lagi.");
     if (confirmation) {
       unit = generateRandomUnit();
     } else {
@@ -38,11 +38,10 @@ while (true) {
     alert("Njirr! Kolom belum diisi. Silakan coba lagi.");
     unit = generateRandomUnit();
   } else if (enteredUnit === unit) {
-    alert("Wah! kode benar. Selamat datang!");
+    alert("Kode benar. Selamat datang!");
     break;
   } else {
-    alert("Halah! kode salah. Silakan coba lagi.");
+    alert("Kode salah. Silakan coba lagi.");
     unit = generateRandomUnit();
   }
 }
-alert("Jika server tidak ada respon kembali lagi 30 menit.")
