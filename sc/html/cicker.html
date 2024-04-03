@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #2E0854; /* Warna latar belakang ungu yang lebih gelap */
+            color: white; /* Warna teks putih */
+            font-family: Arial, sans-serif; /* Font standar */
+            overflow: hidden;
+            position: relative;
+        }
+        #header {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        #imageContainer {
+            user-select: none;
+            -webkit-user-drag: none;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 10px 0 black; /* Bayangan hitam dengan ketebalan 10px */
+        }
+        .falling-number {
+            position: absolute;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>Global Clicker</title>
+</head>
+<body>
+    <div id="header">
+        <h1>Global Clicker</h1>
+        <p style="font-weight: bold;">CLICKS: <span id="counterDisplay">0</span></p>
+    </div>
+    <div id="imageContainer" onclick="incrementCounter()" style="user-select: none; -webkit-user-drag: none; width: 100px; height: 100px; border-radius: 50%; overflow: hidden;">
+        <img src="https://prayogak.github.io/sc/htmlku/clicks.jpg" style="width: 100%; height: 100%;" alt="clicks">
+    </div>
+
+    <script>
+        var count = 0;
+        var maxClicks = 1000000;
+        var fallingNumbers = [];
+
+        function incrementCounter() {
+            if (count < maxClicks) {
+                count++;
+                document.getElementById("counterDisplay").textContent = count;
+                if (count === maxClicks) {
+                    document.getElementById("imageContainer").removeAttribute("onclick");
+                    document.getElementById("imageContainer").style.pointerEvents = "none";
+                    document.getElementById("counterDisplay").textContent = "1 Juta Klik Tercapai!";
+                }
+                createFallingNumber(count);
+            }
+        }
+
+        function createFallingNumber(number) {
+            var numberElement = document.createElement("span");
+            numberElement.className = "falling-number";
+            numberElement.textContent = number;
+            document.body.appendChild(numberElement);
+            var x = Math.random() * window.innerWidth; // Random posisi horizontal
+            var y = -20; // Muncul di luar layar atas
+            numberElement.style.left = x + "px";
+            numberElement.style.top = y + "px";
+            fallingNumbers.push(numberElement);
+
+            var animationInterval = setInterval(function() {
+                if (numberElement.offsetTop >= window.innerHeight - 20) {
+                    document.body.removeChild(numberElement);
+                    clearInterval(animationInterval);
+                }
+            }, 100);
+
+            setTimeout(function() {
+                numberElement.style.transition = "top 2s";
+                numberElement.style.top = window.innerHeight + "px"; // Jatuh ke bawah
+            }, 100); // Delay sebelum mulai jatuh
+        }
+    </script>
+</body>
+</html>
