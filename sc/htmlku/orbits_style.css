@@ -1,0 +1,55 @@
+* {
+  font-family: arial, sans-serif;
+  color: #fcfcfc;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #1c1c1c;
+  overflow: hidden;
+}
+
+main {
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #5c677f;
+  box-shadow: 0 0 4rem #0d0d0d;
+}
+
+canvas {
+  display: block;
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+}
+
+#guides {
+  width: 400px;
+  height: 2rem;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background: #fcfcfc;
+  height: 6px;
+  border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  margin-top: -5px;
+}
+
+input#cycle-count {
+  width: 100%;
+}
