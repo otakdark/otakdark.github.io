@@ -81,18 +81,18 @@
             // Membagi teks menjadi array berdasarkan tag <p>
             const paragraphs = data.split('<p>');
             let modifiedData = '';
-            // Menambahkan <div> sebelum setiap <p>
+            // Menambahkan <div> setiap 15 potongan <p>
             for (let i = 0; i < paragraphs.length; i++) {
-                modifiedData += '<div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div>';
                 modifiedData += paragraphs[i];
+                if ((i + 1) % 15 === 0 && i !== paragraphs.length - 1) {
+                    modifiedData += '<div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div>';
+                }
             }
             // Menampilkan hasilnya dengan mempertahankan sifat tag
             document.getElementById('paragraph-content').innerHTML = modifiedData;
         })
         .catch(error => console.error('Error fetching the story:', error));
     </script>
-
-
     
     <div style="color: black; opacity: 0.3; font-size: 2vw; position: fixed; bottom: 25px; left: 25px; z-index: 2; font-weight: bold; user-select: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;">&copy; YOGAK B4DUT</div>
     
