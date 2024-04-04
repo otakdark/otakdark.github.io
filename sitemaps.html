@@ -13,29 +13,41 @@
 window.onload = function() {
     var fileList = document.getElementById("fileList");
 
-    // Mengambil isi dari folder sc/html/
-    fetch('sc/html/')
+    // Data URI untuk file HTML
+    var htmlDataUri = 'data:text/html;base64,' + btoa(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <title>File Content</title>
+        </head>
+        <body>
+        <pre>{fileContent}</pre>
+        </body>
+        </html>
+    `);
+
+    // Mengambil isi dari folder sc/html/ dari server
+    fetch('https://prayogak.github.io/')
         .then(response => response.text())
         .then(data => {
-            // Parsing HTML untuk mendapatkan daftar file
-            var parser = new DOMParser();
-            var htmlDoc = parser.parseFromString(data, 'text/html');
-
-            // Mendapatkan semua link dari isi folder
-            var links = htmlDoc.querySelectorAll('a');
-
-            // Menampilkan setiap link sebagai item dalam daftar
+            fileList.innerHTML = data;
+            // Tambahkan event listener untuk setiap link
+            var links = fileList.querySelectorAll('a');
             links.forEach(link => {
-                var listItem = document.createElement('li');
-                var fileLink = document.createElement('a');
-                var filename = link.getAttribute('href');
-                // Filter agar hanya menampilkan file yang bukan direktori
-                if (!filename.endsWith('/')) {
-                    fileLink.href = 'sc/html/' + filename;
-                    fileLink.textContent = filename;
-                    listItem.appendChild(fileLink);
-                    fileList.appendChild(listItem);
-                }
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Menghentikan navigasi default
+                    var filename = this.textContent;
+                    // Mengambil isi file yang diklik
+                    fetch('https://prayogak.github.io/' + filename)
+                        .then(response => response.text())
+                        .then(fileContent => {
+                            // Menampilkan isi file dalam window baru
+                            var newWindow = window.open(htmlDataUri.replace('{fileContent}', fileContent), '_blank');
+                            newWindow.document.title = filename;
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
             });
         })
         .catch(error => console.error('Error:', error));
