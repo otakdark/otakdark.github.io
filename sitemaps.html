@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File List</title>
+</head>
+<body>
+<h1>File List</h1>
+<ul id="fileList"></ul>
+
+<script>
+window.onload = function() {
+    var fileList = document.getElementById("fileList");
+
+    // Mengambil isi dari folder sc/html/
+    fetch('sc/html/')
+        .then(response => response.text())
+        .then(data => {
+            // Parsing HTML untuk mendapatkan daftar file
+            var parser = new DOMParser();
+            var htmlDoc = parser.parseFromString(data, 'text/html');
+
+            // Mendapatkan semua link dari isi folder
+            var links = htmlDoc.querySelectorAll('a');
+
+            // Menampilkan setiap link sebagai item dalam daftar
+            links.forEach(link => {
+                var listItem = document.createElement('li');
+                var fileLink = document.createElement('a');
+                fileLink.href = 'sc/html/' + link.getAttribute('href');
+                fileLink.textContent = link.getAttribute('href');
+                listItem.appendChild(fileLink);
+                fileList.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+};
+</script>
+</body>
+</html>
