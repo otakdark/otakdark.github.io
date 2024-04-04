@@ -22,7 +22,7 @@ window.onload = function() {
                 if (file.type === 'file') {
                     var listItem = document.createElement('li');
                     var fileLink = document.createElement('a');
-                    fileLink.href = file.html_url;
+                    fileLink.href = 'https://prayogak.github.io/' + file.path;
                     fileLink.textContent = file.name;
                     listItem.appendChild(fileLink);
                     fileList.appendChild(listItem);
