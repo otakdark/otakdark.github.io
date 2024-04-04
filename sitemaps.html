@@ -13,41 +13,20 @@
 window.onload = function() {
     var fileList = document.getElementById("fileList");
 
-    // Data URI untuk file HTML
-    var htmlDataUri = 'data:text/html;base64,' + btoa(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <title>File Content</title>
-        </head>
-        <body>
-        <pre>{fileContent}</pre>
-        </body>
-        </html>
-    `);
-
-    // Mengambil isi dari folder sc/html/ dari server
-    fetch('https://prayogak.github.io/')
-        .then(response => response.text())
+    // Mengambil isi dari folder sc/html/ dari repository GitHub
+    fetch('https://api.github.com/repos/prayogak/prayogak.github.io/contents/sc/html')
+        .then(response => response.json())
         .then(data => {
-            fileList.innerHTML = data;
-            // Tambahkan event listener untuk setiap link
-            var links = fileList.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault(); // Menghentikan navigasi default
-                    var filename = this.textContent;
-                    // Mengambil isi file yang diklik
-                    fetch('https://prayogak.github.io/' + filename)
-                        .then(response => response.text())
-                        .then(fileContent => {
-                            // Menampilkan isi file dalam window baru
-                            var newWindow = window.open(htmlDataUri.replace('{fileContent}', fileContent), '_blank');
-                            newWindow.document.title = filename;
-                        })
-                        .catch(error => console.error('Error:', error));
-                });
+            // Menampilkan setiap file dalam daftar
+            data.forEach(file => {
+                if (file.type === 'file') {
+                    var listItem = document.createElement('li');
+                    var fileLink = document.createElement('a');
+                    fileLink.href = file.html_url;
+                    fileLink.textContent = file.name;
+                    listItem.appendChild(fileLink);
+                    fileList.appendChild(listItem);
+                }
             });
         })
         .catch(error => console.error('Error:', error));
