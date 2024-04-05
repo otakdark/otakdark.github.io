@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<meta name="author" content="YOGAK ID">
+<link rel="icon" href="../sc/assets/0p5vyb6.jpg" type="image/png">
+<link rel="shortcut" href="../sc/assets/0p5vyb6.jpg">
+<link rel="shortcut icon" href="../sc/assets/0p5vyb6.jpg" type="image/x-icon">
+<title>Checker</title>
+</head>
+<body>
+<h1>BLACK HATS TKT</h1>
+<p>SINI URL WEBSITE </p>
+<form id="urlForm">
+  <input type="url" id="url" name="url" placeholder="Enter URL" required> 
+  <input type="submit" value="Check">
+</form>
+<br>
+
+<div id="results"></div>
+
+<script>
+document.getElementById("urlForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  var url = document.getElementById("url").value;
+  
+  if (url.trim() === "") { 
+    alert("Please enter a valid URL."); 
+    return;
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var responseText = xhr.responseText;
+      if (responseText.includes("bypass")) { 
+        document.getElementById("results").innerHTML = "Success: Bypass code found.";
+      } else {
+        document.getElementById("results").innerHTML = "Failed: No bypass code found.";
+      }
+    } else {
+      document.getElementById("results").innerHTML = "Failed: Error occurred while fetching URL."; 
+    }
+  };
+  xhr.onerror = function() {
+    document.getElementById("results").innerHTML = "Failed: Error occurred while fetching URL."; 
+  };
+  xhr.send();
+});
+</script>
+</body>
+</html>
