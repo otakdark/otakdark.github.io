@@ -76,14 +76,11 @@
     <p style="font-weight: bold;" id="paragraph-count"></p>
 
     <script>
-        // Menggunakan fetch untuk mendapatkan isi file
         fetch('sc/xnkfLFsu.txt')
             .then(response => response.text())
             .then(data => {
-                // Menghitung jumlah tag <p> dalam isi file
                 const paragraphCount = (data.match(/<p>/g) || []).length;
 
-                // Menampilkan jumlah tag <p> di dalam elemen dengan id 'paragraph-count'
                 document.getElementById('paragraph-count').innerText = `Total story: ${paragraphCount}`;
             })
             .catch(error => console.error('Error fetching the story:', error));
@@ -92,20 +89,18 @@
     <div id="paragraph-content"></div>
 
     <script>
-    // Menggunakan fetch untuk mendapatkan isi file
     fetch('sc/xnkfLFsu.txt')
         .then(response => response.text())
         .then(data => {
-            // Menampilkan isi file dengan mempertahankan sifat tag
-            let parsedData = data.split('</p>'); // Memisahkan setiap tag </p>
-            let modifiedData = ''; // String untuk menyimpan data yang telah dimodifikasi
+            let parsedData = data.split('</p>'); 
+            let modifiedData = ''; 
             for (let i = 0; i < parsedData.length; i++) {
-                modifiedData += parsedData[i]; // Menambahkan tag </p> kembali ke setiap potongan data
-                if ((i + 1) % 15 === 0) { // Memeriksa apakah ini merupakan setiap tag ke-15
-                    modifiedData += '<div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div>'; // Menambahkan elemen <div> setiap 15 <p> dengan gaya pusat
+                modifiedData += parsedData[i]; 
+                if ((i + 1) % 15 === 0) { 
+                    modifiedData += '<div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div>'; 
                 }
             }
-            document.getElementById('paragraph-content').innerHTML = modifiedData; // Menampilkan data yang telah dimodifikasi
+            document.getElementById('paragraph-content').innerHTML = modifiedData; 
         })
         .catch(error => console.error('Error fetching the story:', error));
     </script>
