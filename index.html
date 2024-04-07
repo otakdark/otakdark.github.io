@@ -102,7 +102,7 @@
             for (let i = 0; i < parsedData.length; i++) {
                 modifiedData += parsedData[i]; // Menambahkan tag </p> kembali ke setiap potongan data
                 if ((i + 1) % 15 === 0) { // Memeriksa apakah ini merupakan setiap tag ke-15
-                    modifiedData += '<center><div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div></center>'; // Menambahkan elemen <div> setiap 15 <p>
+                    modifiedData += '<div data-mndbanid="aa9d59eb-33aa-4ad0-adc3-09ab4cc3574b"></div>'; // Menambahkan elemen <div> setiap 15 <p>
                 }
             }
             document.getElementById('paragraph-content').innerHTML = modifiedData; // Menampilkan data yang telah dimodifikasi
