@@ -16,7 +16,6 @@
 
 <script>
 window.onload = function() {
-    vwindow.onload = function() {
     var fileList = document.getElementById("fileList");
     var laskarFile; 
 
@@ -39,12 +38,12 @@ window.onload = function() {
             });
 
             if (laskarFile) {
-                var laskarListItem = document.createElement('li');
-                var laskarFileLink = document.createElement('a');
-                laskarFileLink.href = 'https://prayogak.github.io/' + laskarFile.path;
-                laskarFileLink.textContent = '📌 ' + laskarFile.name + ' 📌';
-                laskarListItem.appendChild(laskarFileLink);
-                fileList.insertBefore(laskarListItem, fileList.firstChild);
+                var listItem = document.createElement('li');
+                var fileLink = document.createElement('a');
+                fileLink.href = 'https://prayogak.github.io/' + laskarFile.path;
+                fileLink.textContent = laskarFile.name;
+                listItem.appendChild(fileLink);
+                fileList.insertBefore(listItem, fileList.firstChild);
             }
         })
         .catch(error => console.error('Error:', error));
