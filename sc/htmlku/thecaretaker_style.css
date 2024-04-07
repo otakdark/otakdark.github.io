@@ -1,0 +1,23 @@
+body {
+  background: black;
+}
+
+@keyframes thumbnail {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.thumbnail {
+  animation: thumbnail 1s 10s forwards;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  pointer-events: none;
+  opacity: 1;
+  transform: translateY(-50%);
+}
