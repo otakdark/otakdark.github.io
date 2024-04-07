@@ -17,22 +17,37 @@
 <script>
 window.onload = function() {
     var fileList = document.getElementById("fileList");
+    var laskarFile; // Variabel untuk menyimpan file Laskar.html
 
     // Mengambil isi dari folder sc/html/ dari repository GitHub
     fetch('https://api.github.com/repos/prayogak/prayogak.github.io/contents/sc/html')
         .then(response => response.json())
         .then(data => {
-            // Menampilkan setiap file dalam daftar
+            // Menyusun ulang file agar file Laskar.html selalu berada di atas
             data.forEach(file => {
                 if (file.type === 'file') {
-                    var listItem = document.createElement('li');
-                    var fileLink = document.createElement('a');
-                    fileLink.href = 'https://prayogak.github.io/' + file.path;
-                    fileLink.textContent = file.name;
-                    listItem.appendChild(fileLink);
-                    fileList.appendChild(listItem);
+                    if (file.name === 'Laskar.html') {
+                        laskarFile = file; // Simpan file Laskar.html
+                    } else {
+                        var listItem = document.createElement('li');
+                        var fileLink = document.createElement('a');
+                        fileLink.href = 'https://prayogak.github.io/' + file.path;
+                        fileLink.textContent = file.name;
+                        listItem.appendChild(fileLink);
+                        fileList.appendChild(listItem);
+                    }
                 }
             });
+
+            // Tambahkan file Laskar.html di atas
+            if (laskarFile) {
+                var listItem = document.createElement('li');
+                var fileLink = document.createElement('a');
+                fileLink.href = 'https://prayogak.github.io/' + laskarFile.path;
+                fileLink.textContent = laskarFile.name;
+                listItem.appendChild(fileLink);
+                fileList.insertBefore(listItem, fileList.firstChild);
+            }
         })
         .catch(error => console.error('Error:', error));
 };
