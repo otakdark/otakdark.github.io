@@ -16,18 +16,17 @@
 
 <script>
 window.onload = function() {
+    vwindow.onload = function() {
     var fileList = document.getElementById("fileList");
-    var laskarFile; // Variabel untuk menyimpan file Laskar.html
+    var laskarFile; 
 
-    // Mengambil isi dari folder sc/html/ dari repository GitHub
     fetch('https://api.github.com/repos/prayogak/prayogak.github.io/contents/sc/html')
         .then(response => response.json())
         .then(data => {
-            // Menyusun ulang file agar file Laskar.html selalu berada di atas
             data.forEach(file => {
                 if (file.type === 'file') {
                     if (file.name === 'Laskar.html') {
-                        laskarFile = file; // Simpan file Laskar.html
+                        laskarFile = file; 
                     } else {
                         var listItem = document.createElement('li');
                         var fileLink = document.createElement('a');
@@ -39,14 +38,13 @@ window.onload = function() {
                 }
             });
 
-            // Tambahkan file Laskar.html di atas
             if (laskarFile) {
-                var listItem = document.createElement('li');
-                var fileLink = document.createElement('a');
-                fileLink.href = 'https://prayogak.github.io/' + laskarFile.path;
-                fileLink.textContent = laskarFile.name;
-                listItem.appendChild(fileLink);
-                fileList.insertBefore(listItem, fileList.firstChild);
+                var laskarListItem = document.createElement('li');
+                var laskarFileLink = document.createElement('a');
+                laskarFileLink.href = 'https://prayogak.github.io/' + laskarFile.path;
+                laskarFileLink.textContent = '📌 ' + laskarFile.name + ' 📌';
+                laskarListItem.appendChild(laskarFileLink);
+                fileList.insertBefore(laskarListItem, fileList.firstChild);
             }
         })
         .catch(error => console.error('Error:', error));
