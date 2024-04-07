@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload File</title>
+</head>
+<body>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+  </form>
+
+  <script>
+    const form = document.querySelector('form');
+    const formData = new FormData(form);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/upload');
+    xhr.send(formData);
+
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // File berhasil diupload
+        const response = JSON.parse(xhr.responseText);
+        const fileUrl = response.fileUrl;
+
+        // Tampilkan file yang diupload
+        const image = document.createElement('img');
+        image.src = fileUrl;
+        document.body.appendChild(image);
+      } else {
+        // File gagal diupload
+        alert('File gagal diupload');
+      }
+    };
+  </script>
+</body>
+</html>
