@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" class="notranslate" translate="no">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google" content="notranslate">
-<meta name="author" content="YOGAK ID">
-<link rel="icon" href="sc/assets/mtgDfoGiiAtsgrc.jpg" type="image/png">
-<link rel="shortcut" href="sc/assets/mtgDfoGiiAtsgrc.jpg">
-<link rel="shortcut icon" href="sc/assets/mtgDfoGiiAtsgrc.jpg" type="image/x-icon">
-<title>SITEMAPS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta name="author" content="YOGAK ID">
+    <link rel="icon" href="sc/assets/mtgDfoGiiAtsgrc.jpg" type="image/png">
+    <link rel="shortcut" href="sc/assets/mtgDfoGiiAtsgrc.jpg">
+    <link rel="shortcut icon" href="sc/assets/mtgDfoGiiAtsgrc.jpg" type="image/x-icon">
+    <title>SITEMAPS</title>
 </head>
+
 <body>
-<h1>SITEMAPS</h1>
-<ul id="fileList"></ul>
+    <h1>SITEMAPS</h1>
+    <ul id="fileList"></ul>
 
-<script>
-window.onload = function() {
-    var fileList = document.getElementById("fileList");
-    var laskarFile; 
+    <script>
+        window.onload = function () {
+            var fileList = document.getElementById("fileList");
+            var yogakFile;
 
-    fetch('https://api.github.com/repos/prayogak/prayogak.github.io/contents/sc/html')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(file => {
-                if (file.type === 'file') {
-                    if (file.name === 'Laskar.html') {
-                        laskarFile = file; 
-                    } else {
+            fetch('https://api.github.com/repos/prayogak/prayogak.github.io/contents/sc/html')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(file => {
+                        if (file.type === 'file') {
+                            if (file.name === 'YOGAK.html') {
+                                yogakFile = file;
+                            } else {
+                                var listItem = document.createElement('li');
+                                var fileLink = document.createElement('a');
+                                fileLink.href = 'https://prayogak.github.io/' + file.path;
+                                fileLink.textContent = file.name;
+                                listItem.appendChild(fileLink);
+                                fileList.appendChild(listItem);
+                            }
+                        }
+                    });
+
+                    if (yogakFile) {
                         var listItem = document.createElement('li');
                         var fileLink = document.createElement('a');
-                        fileLink.href = 'https://prayogak.github.io/' + file.path;
-                        fileLink.textContent = file.name;
+                        fileLink.href = 'https://prayogak.github.io/' + yogakFile.path;
+                        fileLink.textContent = yogakFile.name;
                         listItem.appendChild(fileLink);
-                        fileList.appendChild(listItem);
+                        fileList.insertBefore(listItem, fileList.firstChild);
                     }
-                }
-            });
-
-            if (laskarFile) {
-                var listItem = document.createElement('li');
-                var fileLink = document.createElement('a');
-                fileLink.href = 'https://prayogak.github.io/' + laskarFile.path;
-                fileLink.textContent = laskarFile.name;
-                listItem.appendChild(fileLink);
-                fileList.insertBefore(listItem, fileList.firstChild);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-};
-</script>
+                })
+                .catch(error => console.error('Error:', error));
+        };
+    </script>
 </body>
+
 </html>
