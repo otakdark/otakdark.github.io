@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 Decode & Encode</title>
+<style>
+  button {
+    margin-right: 10px;
+  }
+  textarea {
+    width: 100%;
+    max-width: 600px;
+    height: 80px;
+    margin: 0 auto;
+  }
+  #output {
+    word-wrap: break-word; 
+  }
+</style>
+<script>
+  function encodeDecodeBase64(action) {
+    var input = document.getElementById("text-input").value.trim();
+    var output = document.getElementById("output");
+
+    if (action === "decode") {
+      var encoded = btoa(unescape(encodeURIComponent(input)));
+      output.innerHTML = encoded;
+    } else if (action === "encode") {
+      try {
+        var decoded = decodeURIComponent(escape(atob(input)));
+        output.innerHTML = decoded;
+      } catch (error) {
+        output.innerHTML = "Invalid Base64 input";
+      }
+    }
+  }
+
+  function copyToClipboard() {
+    var output = document.getElementById("output").innerText;
+    var tempInput = document.createElement("input");
+    tempInput.value = output;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert("Hasil berhasil disalin!");
+  }
+</script>
+</head>
+<body style="-webkit-user-select: none; /* Safari */ -moz-user-select: none; /* Firefox */ -ms-user-select: none; /* IE 10+ */ user-select: none; /* Standard syntax */">
+  <h2>Base64 Decode & Encode</h2>
+  <textarea id="text-input" placeholder="Enter text..."></textarea><br>
+  <button onclick="encodeDecodeBase64('decode')">DECODE</button>
+  <button onclick="encodeDecodeBase64('encode')">ENCODE</button>
+  <button onclick="copyToClipboard()">Salin</button><br><br>
+  <div id="output"></div>
+  <!-- // secret message shortcut // -->
+</body>
+</html>
