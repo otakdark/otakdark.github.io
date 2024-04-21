@@ -24,15 +24,15 @@
     var output = document.getElementById("output");
 
     if (action === "decode") {
-      var encoded = btoa(unescape(encodeURIComponent(input)));
-      output.innerHTML = encoded;
-    } else if (action === "encode") {
       try {
         var decoded = decodeURIComponent(escape(atob(input)));
-        output.innerHTML = decoded;
+        output.innerText = decoded;
       } catch (error) {
-        output.innerHTML = "Invalid Base64 input";
+        output.innerText = "Invalid Base64 input";
       }
+    } else if (action === "encode") {
+      var encoded = btoa(unescape(encodeURIComponent(input)));
+      output.innerText = encoded;
     }
   }
 
