@@ -40,10 +40,16 @@
       var encoded = btoa(unescape(encodeURIComponent(input)));
       output.innerText = encoded;
     }
+
+    document.getElementById("copy-button").disabled = false;
   }
 
   function copyToClipboard() {
     var output = document.getElementById("output").innerText;
+    if (output === "") {
+      alert("Tidak ada teks untuk disalin!");
+      return;
+    }
     var tempInput = document.createElement("input");
     tempInput.value = output;
     document.body.appendChild(tempInput);
@@ -60,7 +66,7 @@
   <textarea id="text-input" placeholder="Enter text..."></textarea><br>
   <button onclick="encodeDecodeBase64('decode')">DECODE</button>
   <button onclick="encodeDecodeBase64('encode')">ENCODE</button>
-  <button onclick="copyToClipboard()">Salin</button><br><br>
+  <button id="copy-button" onclick="copyToClipboard()" disabled>Salin</button><br><br>
   <div id="output"></div>
   <footer style="text-align: center;">
     <a href="mailto:yogak@onionmail.org">yogak@onionmail.org</a>
