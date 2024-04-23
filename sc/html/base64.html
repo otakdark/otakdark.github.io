@@ -23,6 +23,11 @@
     var input = document.getElementById("text-input").value.trim();
     var output = document.getElementById("output");
 
+    if (input === "") {
+      output.innerText = "Input cannot be empty!";
+      return;
+    }
+
     if (action === "decode") {
       try {
         var decoded = decodeURIComponent(escape(atob(input)));
