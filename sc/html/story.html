@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+    
+<!-- 
+   Website ini menyediakan cerita-cerita creepy sebagai hiburan semata. 
+   Harap diingat bahwa semua cerita yang terdapat di sini adalah fiksi belaka. 
+   Tujuan utama dari situs ini adalah untuk memberikan pengalaman hiburan kepada pengunjungnya. 
+   Mohon diinterpretasikan dengan bijak agar tidak menimbulkan kesalahpahaman. 
+   by YOGAK B4DUT. 
+-->
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#343a40">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta name="author" content="YOGAK ID">
+    <meta name="mnd-ver" content="ou7cuvdpl2cyz20gpnzmvw">
+    <meta property="og:title" content="SINGKAT CERITA CREEPY">
+    <meta name="description" content="Selamat datang di labirin kegelapan, di mana cerita-cerita menyeramkan mengintai di setiap sudut layar. Siap untuk terjebak dalam kisah-kisah yang membuat malam semakin dingin.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../sc/assets/text.css" type="text/css">
+    <link rel="icon" href="../sc/assets/mtgDfoGiiAtsgrc.jpg" type="image/png">
+    <link rel="shortcut" href="../sc/assets/mtgDfoGiiAtsgrc.jpg">
+    <link rel="shortcut icon" href="../sc/assets/mtgDfoGiiAtsgrc.jpg" type="image/x-icon">
+    <script src="../sc/assets/times.js"></script>
+    <script async src="https://ss.nwmnd.com/interstitial.js" data-mndintid="4caa82de-1791-4d7c-ab4e-328ac420b4b5"></script>
+    <script async src="https://ss.nwmnd.com/banner.js"></script>
+    <script async src="https://ss.nwmnd.com/native.js"></script>
+    <title>STORY CREEPY</title>
+  </head>
+
+  <style>
+    img[alt="otakdark.github.io"]{display:none;}
+    body {
+      margin: 0;
+      padding: 10px; 
+    }
+    header {
+    background-color: #343a40;
+    width: 100%;
+    height: auto; 
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: auto;
+    }
+    .tengah {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+
+  <script>
+    // unit.js
+    unit.doSomething();
+  </script>
+  
+  <body style="background-color: white; font-family: 'Times New Roman', Times, serif; color: black; text-align: justify;">
+
+    <div id="foter" class="foter" style="position: fixed; top: 70px; left: -225px; width: 600px; height: 28px; margin: 0px; padding: 10px; font-size: 24px; text-align: center; color: rgb(255, 255, 255); font-family: 'trebuchet ms', Courier new, courier new, sans-serif; font-weight: bold; transform: rotate(-45deg); transform-origin: 50% 0px 0px; background-color: rgb(0, 0, 0); border: 1px solid rgb(170, 170, 170); opacity: 0.5; z-index: 1200; overflow: hidden;">
+        <font face="courier new">
+            <marquee color="darkblue" behavior="Flip" scrollamount="6" width="50%" style="width: 50%;">
+                Beta Development | Update Stories Every Week
+            </marquee>
+        </font>
+    </div>
+      
+    <header>  
+        <div style="text-align: center; color: white; font-size: 32px; font-weight: bold;" class="text-redan">B4DUT CORE</div>
+        <div style="font-family: 'trebuchet ms', Courier new, courier new, sans-serif; color: white; text-align: center;">Created 2024</div>
+    </header>
+
+    <p style="font-weight: bold;" id="paragraph-count"></p>
+
+    <script>
+        fetch('../sc/xnkfLFsu.txt')
+            .then(response => response.text())
+            .then(data => {
+                const paragraphCount = (data.match(/<p>/g) || []).length;
+
+                document.getElementById('paragraph-count').innerText = `Total story: ${paragraphCount}`;
+            })
+            .catch(error => console.error('Error fetching the story:', error));
+    </script>
+    
+    <div id="paragraph-content"></div>
+
+    <script>
+    fetch('../sc/xnkfLFsu.txt')
+        .then(response => response.text())
+        .then(data => {
+            let parsedData = data.split('</p>'); 
+            let modifiedData = ''; 
+            for (let i = 0; i < parsedData.length; i++) {
+                modifiedData += parsedData[i]; 
+                if ((i + 1) % 15 === 0) { 
+                    modifiedData += '<div data-mndazid="de505169-98b2-458e-9e5d-181b58794ffb"></div>'; 
+                }
+            }
+            document.getElementById('paragraph-content').innerHTML = modifiedData; 
+        })
+        .catch(error => console.error('Error fetching the story:', error));
+    </script>
+    
+    <div style="color: black; opacity: 0.3; font-size: 2vw; position: fixed; bottom: 25px; left: 25px; z-index: 2; font-weight: bold; user-select: none; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;">&copy; YOGAK B4DUT; <span id="waktu"></span></div>
+    
+    <!-- //<img alt="MaGNEkzSzpnmecw.gif" src="../sc/assets/MaGNEkzSzpnmecw.gif">// -->
+      
+  </body>
+
+</html>
